@@ -3,7 +3,7 @@ import ProductsList from "./components/ProductsList"
 
 const Home = () => {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50 flex-1">
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 text-center">
@@ -13,7 +13,7 @@ const Home = () => {
 
         <ProductsList />
       </div>
-    </main>
+    </div>
   )
 }
 
