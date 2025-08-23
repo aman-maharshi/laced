@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { Geist } from "next/font/google"
+import { Jost } from "next/font/google"
 import "./globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"]
 })
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+      <body className={`${jost.className} antialiased`}>{children}</body>
     </html>
   )
 }
