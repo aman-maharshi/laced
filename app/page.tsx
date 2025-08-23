@@ -3,15 +3,17 @@ import ProductsList from "./components/ProductsList"
 
 const Home = () => {
   return (
-    <div className="p-4">
-      <div className="flex justify-center items-center">
-        <h1 className="text-heading-2">Laced</h1>
-      </div>
+    <main className="min-h-screen bg-gray-50">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8 text-center">
+          <h1 className="text-heading-2 text-dark-900 mb-4">Premium Nike Collection</h1>
+          <p className="text-lead text-dark-700">Discover our curated collection of Nike footwear and apparel</p>
+        </div>
 
-      <div className="mt-8 max-w-5xl mx-auto">
         <ProductsList />
       </div>
-    </div>
+    </main>
   )
 }
 
