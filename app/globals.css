@@ -1,5 +1,62 @@
 @import "tailwindcss";
 
+/* Local Font Declarations */
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueThin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueUltraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueRoman.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueMedium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueBlack.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("/fonts/HelveticaNeueHeavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
 @theme {
   /* Dark shades */
   --color-dark-900: #111111;
@@ -19,6 +76,7 @@
 
   /* Font family */
   --font-jost: "Jost", sans-serif;
+  --font-helvetica-neue: "HelveticaNeue", sans-serif;
 
   /* Heading sizes */
   --text-heading-1: 72px;

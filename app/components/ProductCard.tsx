@@ -7,8 +7,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="relative h-64 w-full">
+    <div className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+      <div className="relative h-80 w-full bg-white flex-shrink-0">
         <Image
           src={product.imageUrl || "/placeholder-product.jpg"}
           alt={product.name}
@@ -16,27 +16,33 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-      </div>
 
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full">{product.brand}</span>
-          <span className="text-sm text-gray-500">{product.category}</span>
+        {/* Best Seller Badge */}
+        <div className="absolute top-3 left-3 bg-beige-100 px-3 py-1 rounded-full">
+          <span className="text-sm font-semibold text-red-800">Best Seller</span>
         </div>
 
-        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+        {/* Heart Icon */}
+        <div className="absolute top-3 right-3 w-6 h-6 cursor-pointer">
+          <Image
+            src="/icons/heart.svg"
+            alt="Heart icon"
+            width={24}
+            height={24}
+            className="w-full h-full hover:scale-110 transition-transform"
+          />
+        </div>
+      </div>
 
-        <p className="text-gray-600 text-sm mb-3 line-clamp-3">{product.description}</p>
+      <div className="p-4 bg-white flex-1 flex flex-col justify-between">
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
+          <span className="text-lg font-bold text-gray-900">${Number(product.price).toFixed(2)}</span>
+        </div>
 
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900">${Number(product.price).toFixed(2)}</span>
-          <span
-            className={`text-sm px-2 py-1 rounded-full ${
-              (product.inStock || 0) > 0 ? "text-green-700 bg-green-50" : "text-red-700 bg-red-50"
-            }`}
-          >
-            {(product.inStock || 0) > 0 ? `${product.inStock} in stock` : "Out of stock"}
-          </span>
+        <div className="space-y-1">
+          <p className="text-sm text-gray-600">{product.category}</p>
+          <p className="text-sm text-gray-600">4 Colour</p>
         </div>
       </div>
     </div>

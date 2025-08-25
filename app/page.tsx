@@ -3,7 +3,7 @@ import ProductsList from "./components/ProductsList"
 
 const Home = () => {
   return (
-    <div className="bg-gray-50 flex-1">
+    <div className="flex-1">
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 text-center">
