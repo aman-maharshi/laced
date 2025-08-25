@@ -11,7 +11,8 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: "Laced",
-  description: "Get your favourite sneakers"
+  description: "Get your favourite sneakers",
+  icons: [{ rel: "icon", url: "/favicon.ico" }]
 }
 
 export default function RootLayout({
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={`${jost.className} antialiased`}>
         <Navbar />
         <main className="min-h-screen flex flex-col">{children}</main>
