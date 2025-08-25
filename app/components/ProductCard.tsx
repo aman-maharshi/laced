@@ -36,8 +36,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <div className="p-4 bg-white flex-1 flex flex-col justify-between">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
-          <span className="text-lg font-bold text-gray-900">${Number(product.price).toFixed(2)}</span>
+          <h3 className="font-medium text-gray-900">{product.name}</h3>
+          <span className="font-medium text-gray-900">${Number(product.price).toFixed(2)}</span>
         </div>
 
         <div className="space-y-1">

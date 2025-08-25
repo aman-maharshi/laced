@@ -25,7 +25,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${jost.className} antialiased`}>
+      {/* <body className={`${jost.className} antialiased`}> */}
+      <body className={"font-helvetica-neue antialiased"}>
         <Navbar />
         <main className="min-h-screen flex flex-col">{children}</main>
         <Footer />
