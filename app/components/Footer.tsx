@@ -62,7 +62,7 @@ export default function Footer() {
           {/* Logo and Featured Column */}
           <div className="md:col-span-1">
             <div className="mb-6">
-              <Image src="/logo.svg" alt="Laced Logo" width={32} height={32} className="h-6 w-auto mb-4" />
+              <Image src="/logo.png" alt="Laced Logo" width={100} height={100} className="h-16 w-auto" />
             </div>
           </div>
 

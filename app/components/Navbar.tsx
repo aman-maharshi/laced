@@ -27,7 +27,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <Image src="/logo-dark.svg" alt="Laced Logo" width={24} height={24} className="h-4 w-auto" />
+              <Image src="/logo-dark.png" alt="Laced Logo" width={100} height={100} className="h-16 w-auto" />
             </Link>
           </div>
 
