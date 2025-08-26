@@ -18,9 +18,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
 
         {/* Best Seller Badge */}
-        <div className="absolute top-3 left-3 bg-beige-100 px-3 py-1 rounded-full">
+        {/* <div className="absolute top-3 left-3 bg-beige-100 px-3 py-1 rounded-full">
           <span className="text-sm font-semibold text-red-800">Best Seller</span>
-        </div>
+        </div> */}
 
         {/* Heart Icon */}
         <div className="absolute top-3 right-3 w-6 h-6 cursor-pointer">
