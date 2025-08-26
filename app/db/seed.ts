@@ -3,44 +3,154 @@ import { products } from "./schema"
 
 const nikeProducts = [
   {
-    name: "Nike Dunk Low",
+    name: "Nike Air Max 270",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "150.00",
+    description:
+      "The Nike Air Max 270 delivers unrivaled comfort with its iconic Air unit. Features a breathable mesh upper and lightweight foam midsole for all-day wear.",
+    imageUrl: "/shoes/shoe-1.jpg",
+    inStock: 35
+  },
+  {
+    name: "Nike Zoom Fly 5",
+    brand: "Nike",
+    category: "Running",
+    price: "160.00",
+    description:
+      "The Nike Zoom Fly 5 combines responsive ZoomX foam with a carbon fiber plate for explosive speed. Perfect for tempo runs and race day performance.",
+    imageUrl: "/shoes/shoe-2.webp",
+    inStock: 28
+  },
+  {
+    name: "Nike Air Jordan 1 Low",
     brand: "Nike",
     category: "Lifestyle",
     price: "110.00",
     description:
-      "The Nike Dunk Low offers a versatile design that works for both casual and athletic wear. Features a padded collar and rubber outsole for durability.",
-    imageUrl: "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=400&h=400&fit=crop",
-    inStock: 35
-  },
-  {
-    name: "Nike Pegasus 40",
-    brand: "Nike",
-    category: "Running",
-    price: "130.00",
-    description:
-      "The Nike Pegasus 40 is a versatile daily trainer with responsive cushioning and breathable mesh upper. Perfect for runners of all levels.",
-    imageUrl: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
-    inStock: 28
-  },
-  {
-    name: "Puma Blazer Mid",
-    brand: "Puma",
-    category: "Lifestyle",
-    price: "85.00",
-    description:
-      "The Nike Blazer Mid features a classic basketball-inspired design with a mid-top silhouette. Made with premium materials for lasting comfort and style.",
-    imageUrl: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=400&fit=crop",
+      "The iconic Air Jordan 1 Low features premium leather construction and classic basketball styling. A timeless design that works for any occasion.",
+    imageUrl: "/shoes/shoe-3.webp",
     inStock: 22
   },
   {
-    name: "Nike React Vision",
+    name: "Nike React Infinity Run 3",
+    brand: "Nike",
+    category: "Running",
+    price: "160.00",
+    description:
+      "The Nike React Infinity Run 3 offers superior cushioning and stability for long-distance runs. Features React foam technology and a supportive heel clip.",
+    imageUrl: "/shoes/shoe-4.webp",
+    inStock: 18
+  },
+  {
+    name: "Nike Dunk High",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "115.00",
+    description:
+      "The Nike Dunk High elevates the classic basketball silhouette with premium materials and retro styling. Perfect for streetwear and casual looks.",
+    imageUrl: "/shoes/shoe-5.avif",
+    inStock: 25
+  },
+  {
+    name: "Nike Vaporfly",
+    brand: "Nike",
+    category: "Running",
+    price: "250.00",
+    description:
+      "The Nike Vaporfly is engineered for record-breaking performance with ZoomX foam and a carbon fiber plate. The ultimate racing shoe.",
+    imageUrl: "/shoes/shoe-6.avif",
+    inStock: 15
+  },
+  {
+    name: "Nike Air Force 1 '07",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "100.00",
+    description:
+      "The Nike Air Force 1 '07 maintains the classic basketball aesthetic with premium leather and Air-Sole unit for lightweight cushioning.",
+    imageUrl: "/shoes/shoe-7.avif",
+    inStock: 30
+  },
+  {
+    name: "Nike ZoomX Invincible Run",
+    brand: "Nike",
+    category: "Running",
+    price: "180.00",
+    description:
+      "The Nike ZoomX Invincible Run delivers maximum cushioning with ZoomX foam and a supportive heel clip. Ideal for recovery runs and easy miles.",
+    imageUrl: "/shoes/shoe-8.avif",
+    inStock: 20
+  },
+  {
+    name: "Nike SB Dunk Low Pro",
+    brand: "Nike",
+    category: "Skateboarding",
+    price: "95.00",
+    description:
+      "The Nike SB Dunk Low Pro features a padded tongue and Zoom Air unit for skateboarding performance. Durable construction meets classic style.",
+    imageUrl: "/shoes/shoe-9.avif",
+    inStock: 18
+  },
+  {
+    name: "Nike Air Zoom Tempo",
+    brand: "Nike",
+    category: "Running",
+    price: "200.00",
+    description:
+      "The Nike Air Zoom Tempo combines ZoomX foam with Zoom Air units for responsive training. Perfect for tempo runs and workouts.",
+    imageUrl: "/shoes/shoe-10.avif",
+    inStock: 16
+  },
+  {
+    name: "Nike Blazer Mid '77",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "85.00",
+    description:
+      "The Nike Blazer Mid '77 features a classic basketball-inspired design with premium leather construction. Timeless style meets modern comfort.",
+    imageUrl: "/shoes/shoe-11.avif",
+    inStock: 24
+  },
+  {
+    name: "Nike Zoom Fly 4",
+    brand: "Nike",
+    category: "Running",
+    price: "140.00",
+    description:
+      "The Nike Zoom Fly 4 offers responsive cushioning with React foam and a carbon fiber plate. Ideal for tempo runs and race preparation.",
+    imageUrl: "/shoes/shoe-12.avif",
+    inStock: 19
+  },
+  {
+    name: "Nike Air Max 90",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "130.00",
+    description:
+      "The Nike Air Max 90 features the iconic Air unit and classic design elements. Premium materials and timeless style for everyday wear.",
+    imageUrl: "/shoes/shoe-13.avif",
+    inStock: 26
+  },
+  {
+    name: "Nike React Miler 2",
     brand: "Nike",
     category: "Running",
     price: "120.00",
     description:
-      "The Nike React Vision combines React foam technology with a breathable upper for a smooth, responsive running experience. Ideal for daily training runs.",
-    imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
-    inStock: 18
+      "The Nike React Miler 2 provides stable cushioning with React foam technology. Perfect for daily training and long-distance runs.",
+    imageUrl: "/shoes/shoe-14.avif",
+    inStock: 21
+  },
+  {
+    name: "Nike Air Jordan 1 Mid",
+    brand: "Nike",
+    category: "Lifestyle",
+    price: "125.00",
+    description:
+      "The Nike Air Jordan 1 Mid elevates the classic basketball silhouette with premium materials and iconic styling. A must-have for sneaker enthusiasts.",
+    imageUrl: "/shoes/shoe-15.avif",
+    inStock: 17
   }
 ]
 
