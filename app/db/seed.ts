@@ -3,36 +3,6 @@ import { products } from "./schema"
 
 const nikeProducts = [
   {
-    name: "Nike Air Jordan 1",
-    brand: "Nike",
-    category: "Basketball",
-    price: "170.00",
-    description:
-      "The Air Jordan 1 Retro High features a classic design with premium leather construction and the iconic Air-Sole unit for lightweight cushioning.",
-    imageUrl: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400&h=400&fit=crop",
-    inStock: 30
-  },
-  {
-    name: "Nike Metcon 7",
-    brand: "Nike",
-    category: "CrossFit",
-    price: "130.00",
-    description:
-      "The Nike Metcon 7 is built for the rigors of CrossFit training with a breathable upper and stable platform for lifting and dynamic movements.",
-    imageUrl: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=400&fit=crop",
-    inStock: 20
-  },
-  {
-    name: "Nike Air Force 1",
-    brand: "Nike",
-    category: "Lifestyle",
-    price: "100.00",
-    description:
-      "The Nike Air Force 1 is a timeless classic with a clean, minimalist design. Perfect for everyday wear with premium leather construction and Air-Sole cushioning.",
-    imageUrl: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop",
-    inStock: 40
-  },
-  {
     name: "Nike Dunk Low",
     brand: "Nike",
     category: "Lifestyle",
@@ -53,8 +23,8 @@ const nikeProducts = [
     inStock: 28
   },
   {
-    name: "Nike Blazer Mid",
-    brand: "Nike",
+    name: "Puma Blazer Mid",
+    brand: "Puma",
     category: "Lifestyle",
     price: "85.00",
     description:
