@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
-import { Product } from "@/app/db/schema"
+import { Product } from "@/lib/db/schema"
 
 export default function ProductsList() {
   const [products, setProducts] = useState<Product[]>([])

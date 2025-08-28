@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Product } from "@/app/db/schema"
+import { Product } from "@/lib/db/schema"
 
 interface ProductCardProps {
   product: Product
