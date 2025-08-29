@@ -29,15 +29,6 @@ export default function Footer() {
         { name: "Hoodies & Pullovers", href: "/clothing/hoodies" },
         { name: "Shirts & Tops", href: "/clothing/shirts" }
       ]
-    },
-    {
-      title: "Kids'",
-      links: [
-        { name: "Infant & Toddler Shoes", href: "/kids/infant" },
-        { name: "Kids' Shoes", href: "/kids/shoes" },
-        { name: "Kids' Jordan Shoes", href: "/kids/jordan" },
-        { name: "Kids' Basketball Shoes", href: "/kids/basketball" }
-      ]
     }
   ]
 
@@ -58,7 +49,7 @@ export default function Footer() {
     <footer className="bg-dark-900 text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and Featured Column */}
           <div className="md:col-span-1">
             <div className="mb-6">
@@ -104,23 +95,6 @@ export default function Footer() {
             <h3 className="text-body-medium font-medium text-white mb-4">Clothing</h3>
             <ul className="space-y-2">
               {footerColumns[2].links.map(link => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-dark-500 hover:text-white transition-colors duration-200 text-body"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Kids Column */}
-          <div>
-            <h3 className="text-body-medium font-medium text-white mb-4">Kids'</h3>
-            <ul className="space-y-2">
-              {footerColumns[3].links.map(link => (
                 <li key={link.name}>
                   <Link
                     href={link.href}

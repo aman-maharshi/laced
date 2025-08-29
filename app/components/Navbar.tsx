@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { authStore } from "../store/authStore"
+import { ShoppingCart } from "lucide-react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -31,14 +32,7 @@ export default function Navbar() {
   const navigationLinks = [
     { name: "Men", href: "/men" },
     { name: "Women", href: "/women" },
-    { name: "Kids", href: "/kids" },
-    { name: "Collections", href: "/collections" },
-    { name: "Contact", href: "/contact" }
-  ]
-
-  const rightLinks = [
-    { name: "Search", href: "/search" },
-    { name: "My Cart (2)", href: "/cart" }
+    { name: "Collections", href: "/collections" }
   ]
 
   return (
@@ -70,15 +64,13 @@ export default function Navbar() {
           {/* Right Side Links */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-6">
-              {rightLinks.map(link => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-dark-900 hover:text-green-600 text-body-medium font-medium transition-colors duration-200"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {/* Cart Icon */}
+              <Link href="/cart" className="text-dark-900 hover:text-black transition-colors duration-200 relative">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  2
+                </span>
+              </Link>
 
               {/* Auth Section */}
               {isAuthenticated ? (
@@ -142,16 +134,17 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="border-t border-light-300 pt-4 mt-4">
-                {rightLinks.map(link => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+                {/* Mobile Cart */}
+                <Link
+                  href="/cart"
+                  className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <ShoppingCart className="w-5 h-5" />
+                    <span>Cart (2)</span>
+                  </div>
+                </Link>
 
                 {/* Mobile Auth Section */}
                 {isAuthenticated ? (
