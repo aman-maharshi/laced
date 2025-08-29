@@ -53,7 +53,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-dark-900 hover:text-green-600 px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                  className="text-dark-900 hover:text-black px-3 py-2 text-body-medium font-medium transition-colors duration-200"
                 >
                   {link.name}
                 </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
               {/* Cart Icon */}
               <Link href="/cart" className="text-dark-900 hover:text-black transition-colors duration-200 relative">
                 <ShoppingCart className="w-6 h-6" />
-                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   2
                 </span>
               </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
                   <span className="text-dark-900">Welcome, {user?.name || user?.email}</span>
                   <button
                     onClick={handleSignOut}
-                    className="text-dark-900 hover:text-green-600 text-body-medium font-medium transition-colors duration-200"
+                    className="text-dark-900 hover:text-black text-body-medium font-medium transition-colors duration-200"
                   >
                     Sign Out
                   </button>
@@ -87,7 +87,7 @@ export default function Navbar() {
                 <div className="flex items-center space-x-4">
                   <Link
                     href="/sign-in"
-                    className="text-dark-900 hover:text-green-600 text-body-medium font-medium transition-colors duration-200"
+                    className="text-dark-900 hover:text-black text-body-medium font-medium transition-colors duration-200"
                   >
                     Sign In
                   </Link>
@@ -106,7 +106,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-dark-900 hover:text-green-600 p-2 rounded-md transition-colors duration-200"
+              className="text-dark-900 hover:text-black p-2 rounded-md transition-colors duration-200"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMenuOpen ? (
@@ -127,7 +127,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                  className="text-dark-900 hover:text-black block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
@@ -137,7 +137,7 @@ export default function Navbar() {
                 {/* Mobile Cart */}
                 <Link
                   href="/cart"
-                  className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                  className="text-dark-900 hover:text-black block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <div className="flex items-center space-x-2">
@@ -155,7 +155,7 @@ export default function Navbar() {
                         handleSignOut()
                         setIsMenuOpen(false)
                       }}
-                      className="w-full text-left text-dark-900 hover:text-green-600 px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                      className="w-full text-left text-dark-900 hover:text-black px-3 py-2 text-body-medium font-medium transition-colors duration-200"
                     >
                       Sign Out
                     </button>
@@ -164,7 +164,7 @@ export default function Navbar() {
                   <div className="pt-4 space-y-2">
                     <Link
                       href="/sign-in"
-                      className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                      className="text-dark-900 hover:text-black block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Sign In
