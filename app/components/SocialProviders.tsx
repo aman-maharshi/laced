@@ -11,9 +11,17 @@ export default function SocialProviders({ mode }: SocialProvidersProps) {
 
   const handleSocialAuth = async (provider: string) => {
     setIsLoading(provider)
-    // TODO: Implement social authentication logic
-    console.log(`${provider} authentication for ${mode}`)
-    setTimeout(() => setIsLoading(null), 1000)
+
+    try {
+      // For now, show a message that Google auth is not implemented
+      // In a real implementation, you would integrate with Google OAuth
+      console.log(`${provider} authentication for ${mode} - not implemented yet`)
+      alert(`${provider} authentication is not implemented yet. Please use email/password.`)
+      setIsLoading(null)
+    } catch (error) {
+      console.error(`${provider} authentication error:`, error)
+      setIsLoading(null)
+    }
   }
 
   return (

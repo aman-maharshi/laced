@@ -2,10 +2,31 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { authStore } from "../store/authStore"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { user, isAuthenticated, checkAuthStatus, clearAuth } = authStore()
+
+  useEffect(() => {
+    checkAuthStatus()
+  }, [checkAuthStatus])
+
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/auth/[...better-auth]", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ action: "signout" })
+      })
+      clearAuth()
+    } catch (error) {
+      console.error("Sign out error:", error)
+    }
+  }
 
   const navigationLinks = [
     { name: "Men", href: "/men" },
@@ -58,6 +79,34 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
+
+              {/* Auth Section */}
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-dark-900">Welcome, {user?.name || user?.email}</span>
+                  <button
+                    onClick={handleSignOut}
+                    className="text-dark-900 hover:text-green-600 text-body-medium font-medium transition-colors duration-200"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  <Link
+                    href="/sign-in"
+                    className="text-dark-900 hover:text-green-600 text-body-medium font-medium transition-colors duration-200"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/sign-up"
+                    className="bg-dark-900 text-light-100 px-4 py-2 rounded-lg font-medium hover:bg-dark-700 transition-colors duration-200"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
@@ -103,6 +152,39 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 ))}
+
+                {/* Mobile Auth Section */}
+                {isAuthenticated ? (
+                  <div className="pt-4 space-y-2">
+                    <div className="px-3 py-2 text-dark-900">Welcome, {user?.name || user?.email}</div>
+                    <button
+                      onClick={() => {
+                        handleSignOut()
+                        setIsMenuOpen(false)
+                      }}
+                      className="w-full text-left text-dark-900 hover:text-green-600 px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <div className="pt-4 space-y-2">
+                    <Link
+                      href="/sign-in"
+                      className="text-dark-900 hover:text-green-600 block px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      href="/sign-up"
+                      className="bg-dark-900 text-light-100 block px-3 py-2 rounded-lg font-medium hover:bg-dark-700 transition-colors duration-200 text-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

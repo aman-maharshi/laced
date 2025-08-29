@@ -2,28 +2,62 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { authStore } from "../store/authStore"
 
 interface AuthFormProps {
   mode: "signin" | "signup"
 }
 
 export default function AuthForm({ mode }: AuthFormProps) {
+  const router = useRouter()
+  const { setUser, setLoading, setError, isLoading, error } = authStore()
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: ""
   })
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setLoading(true)
+    setError(null)
 
-    // TODO: Implement authentication logic
-    console.log(`${mode} form submitted:`, formData)
+    try {
+      const response = await fetch("/api/auth/[...better-auth]", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          action: mode === "signup" ? "signup" : "signin",
+          ...(mode === "signup" ? { name: formData.fullName } : {}),
+          email: formData.email,
+          password: formData.password
+        })
+      })
 
-    setTimeout(() => setIsLoading(false), 1000)
+      const result = await response.json()
+
+      if (!response.ok) {
+        setError(result.error || "Authentication failed")
+        setLoading(false)
+        return
+      }
+
+      if (result.success && result.user) {
+        setUser(result.user)
+        setLoading(false)
+
+        // Redirect to home page after successful auth
+        router.push("/")
+      }
+    } catch (err) {
+      setError("An unexpected error occurred")
+      setLoading(false)
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +82,13 @@ export default function AuthForm({ mode }: AuthFormProps) {
         <h1 className="text-3xl font-bold text-dark-900 mb-2">{title}</h1>
         <p className="text-dark-500">{subtitle}</p>
       </div>
+
+      {/* Error Display */}
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-800 text-sm">{error}</p>
+        </div>
+      )}
 
       {/* Social Providers */}
       <SocialProviders mode={mode} />
