@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
-import { users, accounts } from "@/lib/db/schema"
+import { users, accounts, sessions } from "@/lib/db/schema"
 import { compare, hash } from "bcryptjs"
 import { signUpSchema, signInSchema } from "@/lib/validations/auth"
 import { v4 as uuidv4 } from "uuid"
-
-// Simple session storage (in production, use Redis or database)
-const sessions = new Map<string, { userId: string; expiresAt: Date }>()
+import { eq, and, gt, lt } from "drizzle-orm"
 
 // Cookie options
 const cookieOptions = {
@@ -15,6 +13,15 @@ const cookieOptions = {
   sameSite: "strict" as const,
   path: "/",
   maxAge: 7 * 24 * 60 * 60 // 7 days
+}
+
+// Clean up expired sessions
+async function cleanupExpiredSessions() {
+  try {
+    await db.delete(sessions).where(lt(sessions.expiresAt, new Date()))
+  } catch (error) {
+    console.error("Error cleaning up expired sessions:", error)
+  }
 }
 
 // Check database connection
@@ -47,6 +54,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Clean up expired sessions periodically
+    await cleanupExpiredSessions()
+
     const body = await request.json()
     const { action, ...data } = body
 
@@ -54,9 +64,9 @@ export async function POST(request: NextRequest) {
 
     switch (action) {
       case "signup":
-        return await handleSignUp(data)
+        return await handleSignUp(data, request)
       case "signin":
-        return await handleSignIn(data)
+        return await handleSignIn(data, request)
       case "signout":
         return await handleSignOut(request)
       default:
@@ -74,7 +84,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function handleSignUp(data: any) {
+async function handleSignUp(data: any, request: NextRequest) {
   try {
     console.log("Processing signup for:", { ...data, password: "[REDACTED]" })
 
@@ -116,10 +126,17 @@ async function handleSignUp(data: any) {
 
     console.log("Account record created")
 
-    // Create session
+    // Create session in database
     const sessionToken = uuidv4()
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    sessions.set(sessionToken, { userId: newUser.id, expiresAt })
+
+    await db.insert(sessions).values({
+      userId: newUser.id,
+      token: sessionToken,
+      expiresAt: expiresAt,
+      ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown",
+      userAgent: request.headers.get("user-agent") || "unknown"
+    })
 
     const response = NextResponse.json({
       success: true,
@@ -147,7 +164,7 @@ async function handleSignUp(data: any) {
   }
 }
 
-async function handleSignIn(data: any) {
+async function handleSignIn(data: any, request: NextRequest) {
   try {
     console.log("Processing signin for:", { ...data, password: "[REDACTED]" })
 
@@ -180,10 +197,17 @@ async function handleSignIn(data: any) {
 
     console.log("Password verified successfully for user:", user.email)
 
-    // Create session
+    // Create session in database
     const sessionToken = uuidv4()
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    sessions.set(sessionToken, { userId: user.id, expiresAt })
+
+    await db.insert(sessions).values({
+      userId: user.id,
+      token: sessionToken,
+      expiresAt: expiresAt,
+      ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown",
+      userAgent: request.headers.get("user-agent") || "unknown"
+    })
 
     const response = NextResponse.json({
       success: true,
@@ -215,7 +239,8 @@ async function handleSignOut(request: NextRequest) {
   const sessionToken = request.cookies.get("auth_session")?.value
 
   if (sessionToken) {
-    sessions.delete(sessionToken)
+    // Delete session from database
+    await db.delete(sessions).where(eq(sessions.token, sessionToken))
   }
 
   const response = NextResponse.json({ success: true })
@@ -231,21 +256,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ user: null })
     }
 
-    const session = sessions.get(sessionToken)
-    if (!session || session.expiresAt < new Date()) {
-      sessions.delete(sessionToken)
-      const response = NextResponse.json({ user: null })
-      response.cookies.delete("auth_session")
-      return response
-    }
-
-    // Get user data
-    const user = await db.query.users.findFirst({
-      where: (users, { eq }) => eq(users.id, session.userId)
+    // Get session from database
+    const session = await db.query.sessions.findFirst({
+      where: and(
+        eq(sessions.token, sessionToken),
+        gt(sessions.expiresAt, new Date()) // Check if session is not expired
+      ),
+      with: {
+        user: true
+      }
     })
 
-    if (!user) {
-      sessions.delete(sessionToken)
+    if (!session) {
+      // Session not found or expired, clean up cookie
       const response = NextResponse.json({ user: null })
       response.cookies.delete("auth_session")
       return response
@@ -253,9 +276,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       user: {
-        id: user.id,
-        name: user.name,
-        email: user.email
+        id: session.user.id,
+        name: session.user.name,
+        email: session.user.email
       }
     })
   } catch (error) {

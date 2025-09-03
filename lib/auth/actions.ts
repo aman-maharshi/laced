@@ -16,7 +16,8 @@ export async function getCurrentUser() {
     }
 
     // Make a request to our auth API to validate the session
-    const response = await fetch(`${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/auth/[...better-auth]`, {
+    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || "http://localhost:3000"
+    const response = await fetch(`${baseUrl}/api/auth/[...better-auth]`, {
       headers: {
         Cookie: `auth_session=${sessionToken}`
       }
