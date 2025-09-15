@@ -29,35 +29,33 @@ export default function Navbar() {
     }
   }
 
-  const navigationLinks = [
-    { name: "Men", href: "/men" },
-    { name: "Women", href: "/women" },
-    { name: "Collections", href: "/collections" }
-  ]
+  const navigationLinks = [{ name: "Collections", href: "/collections" }]
 
   return (
     <nav className="bg-white border-b border-light-300 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <Image src="/logo-dark.png" alt="Laced Logo" width={100} height={100} className="h-16 w-auto" />
-            </Link>
-          </div>
+          <div className="flex items-center gap-4">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="flex items-center">
+                <Image src="/logo-dark.png" alt="Laced Logo" width={100} height={100} className="h-16 w-auto" />
+              </Link>
+            </div>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navigationLinks.map(link => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-dark-900 hover:text-black px-3 py-2 text-body-medium font-medium transition-colors duration-200"
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:block">
+              <div className="flex items-baseline space-x-8">
+                {navigationLinks.map(link => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-dark-900 hover:text-black px-3 py-2 text-body-medium font-medium transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
