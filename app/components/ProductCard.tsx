@@ -17,13 +17,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
 
-        {/* Best Seller Badge */}
-        {/* <div className="absolute top-3 left-3 bg-beige-100 px-3 py-1 rounded-full">
-          <span className="text-sm font-semibold text-red-800">Best Seller</span>
-        </div> */}
-
         {/* Heart Icon */}
-        <div className="absolute top-3 right-3 w-6 h-6 cursor-pointer">
+        {/* <div className="absolute top-3 right-3 w-6 h-6 cursor-pointer">
           <Image
             src="/icons/heart.svg"
             alt="Heart icon"
@@ -31,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             height={24}
             className="w-full h-full hover:scale-110 transition-transform"
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="p-4 bg-white flex-1 flex flex-col justify-between">

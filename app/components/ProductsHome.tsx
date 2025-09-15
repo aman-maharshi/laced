@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
 import { Product } from "@/lib/db/schema"
 
-export default function ProductsList() {
+export default function ProductsHome() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -82,7 +82,7 @@ export default function ProductsList() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map(product => (
+      {products.slice(0, 3).map(product => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
